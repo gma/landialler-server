@@ -1,0 +1,75 @@
+INSTALL
+-------
+
+This file contains the installation instructions for landiallerd.py.
+In the future they will be streamlined so that you will be able to
+type something as simple as "python setup.py install", but
+unfortunately we're not quite there yet.
+
+
+REQUIREMENTS
+
+  - Unix, or similar POSIX compliant Operating System (e.g. Linux)
+
+  - Python 2.3 compiled with support for threads. Note that thread
+    support is enabled by default if your system supports it.
+
+
+INSTALLATION
+
+Untar the source code, change into the directory created, and type (as
+root):
+
+  # make install
+
+landiallerd.py will be installed in /usr/local/sbin, and
+landiallerd.conf will be installed in /usr/local/etc. This should be
+fine for most systems.
+
+In order to start the daemon every time your operating system is
+booted you may wish to edit the files in your /etc/init.id (or
+similar) directories. For security reasons (it is simply best
+practice) it is recommended that you create a new user account purely
+to run the landiallerd.py server and configure your startup scripts to
+use that account.
+
+I recommend either using syslog, or a normal logfile, to record the
+server's actions. You can turn logging on with the -s and -l options:
+
+    -l file     write log messages to file
+    -s          write log messages to syslog
+
+If you have problems with LANdialler please turn debugging on with the 
+-d option and then send me the contents of the logfile, along with a 
+description of the problem.
+
+
+CONFIGURATION
+
+You will probably need to edit the [commands] section of the config
+file. The "connect" and "disconnect" options should be non interactive
+shell commands or scripts that cause the modem to dial up or
+disconnect. They should have an exit status of 0 if they are launched
+successfully, or a positive integer if they are unable to run
+correctly. The "is connected" command is simply used to determine
+whether we are currently on line and should return 0 if we are or a
+positive integer if we are not. None of the commands should block
+(i.e. pause), but should return immediately. For example, the
+"connect" command should return 0 if the it is able to launch the dial
+up software, rather than waiting to see whether or not the dial up
+software is successful in attempting to connect to the Internet.
+
+The default commands are known to work on Debian GNU/Linux and Gentoo
+Linux, as they use the pppconfig utility to set up the PPP parameters,
+thereby enabling the pon and poff commands (which makes life very easy
+for connecting to many ISPs).
+
+If you have problems installing either the client or the server then I
+will try and help you if I can. Please make sure that you send me as
+much information as possible, including the operating system (and
+version number) that you are using, the version of Python and any
+output that you see when you launch the software (either on the
+command line or in syslog).
+
+
+$Id: INSTALL,v 1.7 2004/01/19 22:14:41 ashtong Exp $

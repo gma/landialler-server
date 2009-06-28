@@ -1,0 +1,24 @@
+README
+------
+
+landiallerd.py is the LANdialler server program. Along with
+landialler.py (the client, packaged separately), it enables a group of
+workstations (Windows, Linux, and probably MacOS) to control a single
+modem on a Unix server.
+
+LANdialler is useful if the Unix server is configured to route packets
+between the Internet and the workstations (e.g. via NAT or IP
+Masquerading), providing all the workstations with Internet access
+(and control of the modem).
+
+For more information (and screenshots) see:
+
+  http://landialler.sourceforge.net/
+
+
+INSTALLATION
+
+See the file INSTALL.
+
+
+$Id: README,v 1.2 2002/01/11 18:44:11 graham Exp $
